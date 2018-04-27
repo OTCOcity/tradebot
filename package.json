@@ -1,0 +1,22 @@
+{
+  "name": "tradeapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bitmex-realtime-api": "^0.2.6",
+    "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "ws": "^5.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-plugin-destructuring": "^2.1.0",
+    "eslint-plugin-import": "^2.11.0"
+  }
+}

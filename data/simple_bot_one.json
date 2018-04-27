@@ -1,0 +1,17 @@
+{
+  "name": "Test bot for Bitmex market",
+  "bot_type": "SimpleBot",
+  "market": "bitmex",
+  "symbol": [
+    "BTC",
+    "USD"
+  ],
+  "sum": 1000,
+  "buy_from": 7820,
+  "sell_from": 7935,
+  "price_step": 10,
+  "percent_step": 20,
+  "percent_start": 0,
+  "status": "new",
+  "id": null
+}
