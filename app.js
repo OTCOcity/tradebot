@@ -271,7 +271,7 @@ const botListData = [
 app.get('/botlist', function (req, res) {
 
   // If first request return immediately
-  const timeoutDelay = req.query.init !== 'true' ? 3500 : 100;
+  const timeoutDelay = req.query.time == 0 ? 100 : 9000;
 
   setTimeout(function () {
     res.json({
@@ -285,7 +285,7 @@ app.get('/botlist', function (req, res) {
       data: botListData,
       balanceUsd: ((Math.random() * (5 - 0)) + 0).toFixed(8),
       balanceBtc: ((Math.random() * (100 - 10)) + 10).toFixed(8),
-      date: Date.now(),
+      time: Date.now(),
     });
   }, timeoutDelay);
 });
@@ -300,6 +300,58 @@ app.get('/botlist/:id', function (req, res) {
   });
 
   res.status(403).send('Forbidden');
+
+});
+
+// Stop bot by id
+app.get('/stop/:id', function (req, res) {
+
+  botListData.forEach(function (bot) {
+    if (bot.id == req.params.id) {
+      bot.status = 'stop';
+      res.json(bot);
+    }
+  });
+
+  res.status(404).send('Not found');
+
+});
+
+// Start bot by id
+app.get('/start/:id', function (req, res) {
+
+  botListData.forEach(function (bot) {
+    if (bot.id == req.params.id) {
+      bot.status = 'active';
+      res.json(bot);
+    }
+  });
+
+  res.status(404).send('Not found');
+
+});
+
+// Delete bot by id
+app.get('/delete/:id', function (req, res) {
+
+  botListData.forEach(function (bot, index) {
+    if (bot.id == req.params.id) {
+
+      const deletedBot = Object.assign({}, bot);
+      botListData.splice(index, 1);
+
+      res.json({
+        function: 'deleteBotSuccess',
+        data: deletedBot,
+        messages: {
+          type: 'danger',
+          text: 'Бот был успешно удален!'
+        }
+      });
+    }
+  });
+
+  res.status(404).send('Not found');
 
 });
 
